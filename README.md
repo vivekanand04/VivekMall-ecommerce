@@ -1,8 +1,8 @@
-# **Binkeyit - Your Virtual Mall**
+# **VivekMall - Your Virtual Mall**
 
 ### **Tech Stack:** React, Node.js, MongoDB, Express.js
 
-**August 2024**
+**September 2025**
 
 ---
 
