@@ -1,11 +1,11 @@
 import React from 'react'
-import banner3 from '../assets/banner6.jpeg'
+// import banner3 from '../assets/banner6.jpeg'
 import bannerMobile from '../assets/banner-mobile.jpg'
 import { useSelector } from 'react-redux'
 import { valideURLConvert } from '../utils/valideURLConvert'
 import {Link, useNavigate} from 'react-router-dom'
 import CategoryWiseProductDisplay from '../components/CategoryWiseProductDisplay'
-
+const banner3="https://res.cloudinary.com/dkqvwdfyp/image/upload/v1757274198/ecommercee/ykxzoqxqjoy0ixcsm36a.jpg";
 const Home = () => {
   const loadingCategory = useSelector(state => state.product.loadingCategory)
   const categoryData = useSelector(state => state.product.allCategory)
