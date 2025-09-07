@@ -43,10 +43,17 @@ const Register = () => {
         }
 
         try {
-            const response = await Axios({
-                ...SummaryApi.register,
-                data : data
-            })
+            // const response = await Axios({
+            //     ...SummaryApi.register,
+               
+            //     data : data
+            // })
+             const response = await Axios({
+    url: "http://localhost:8080/api/user/register",
+    method: "post",
+    data: data
+  })
+
             
             if(response.data.error){
                 toast.error(response.data.message)

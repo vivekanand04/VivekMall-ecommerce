@@ -3,10 +3,11 @@ import { v2 as cloudinary } from "cloudinary";
 
 // Cloudinary ka configuration set kar rahe hain using environment variables
 cloudinary.config({
-  cloud_name: process.env.CLODINARY_CLOUD_NAME, // Cloudinary account ka naam
-  api_key: process.env.CLODINARY_API_KEY, // API key jo Cloudinary dashboard se milti hai
-  api_secret: process.env.CLODINARY_API_SECRET_KEY, // Secret key jo secure access ke liye hoti hai
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
+
 
 // Ye ek async function hai jo image ko Cloudinary pe upload karega
 const uploadImageClodinary = async (image) => {
@@ -18,7 +19,7 @@ const uploadImageClodinary = async (image) => {
   const uploadImage = await new Promise((resolve, reject) => {
     cloudinary.uploader
       .upload_stream(
-        { folder: "binkit" }, // Cloudinary me image kis folder me save hogi (yaha "binkit")
+        { folder: "ecommercee" }, // Cloudinary me image kis folder me save hogi (yaha "binkit")
         (error, uploadResult) => {
           // upload ho jaane ke baad result ko return kar do
           return resolve(uploadResult); // success ke case me upload result milega

@@ -58,6 +58,13 @@ const UploadProduct = () => {
     const response = await uploadImage(file)
     const { data : ImageResponse } = response
     const imageUrl = ImageResponse.data.url 
+    console.log("the backend response is",response)
+//     const response = await uploadImage(file)
+    // console.log("the backend response is",response)
+// const ImageResponse = response.data
+// const imageUrl = ImageResponse.url
+
+
 
     setData((preve)=>{
       return{
@@ -270,7 +277,7 @@ const UploadProduct = () => {
                     </div>
                   </div>
                 </div>
-                <div className='grid gap-1'>
+                {/* <div className='grid gap-1'>
                   <label className='font-medium'>Sub Category</label>
                   <div>
                     <select
@@ -291,7 +298,7 @@ const UploadProduct = () => {
                     >
                       <option value={""} className='text-neutral-600'>Select Sub Category</option>
                       {
-                        allSubCategory.map((c,index)=>{
+                        allSubCategory.AxiosToastErrormap((c,index)=>{
                           return(
                             <option value={c?._id}>{c.name}</option>
                           )
@@ -313,7 +320,67 @@ const UploadProduct = () => {
                       }
                     </div>
                   </div>
-                </div>
+                </div> */}
+    <div className='grid gap-1'>
+  <label className='font-medium'>Sub Category</label>
+  <div>
+    <select
+      className='bg-blue-50 border w-full p-2 rounded'
+      value={selectSubCategory}
+      onChange={(e) => {
+        const value = e.target.value
+        const subCategory = allSubCategory.find(el => el._id === value)
+
+        setData((preve) => {
+          return {
+            ...preve,
+            subCategory: [...preve.subCategory, subCategory]
+          }
+        })
+        setSelectSubCategory("")
+      }}
+    >
+      <option value={""} className='text-neutral-600'>Select Sub Category</option>
+      {
+        (() => {
+          console.log("All SubCategories:", allSubCategory)
+          console.log("Currently selected categories:", data.category)
+
+          const selectedCategoryIds = data.category.map(c => c._id.toString())
+
+          return allSubCategory
+            .filter(sc =>
+              data.category.length > 0 &&
+              sc.category.some(cat => selectedCategoryIds.includes(cat._id.toString()))
+            )
+            .map((c, index) => (
+              <option key={c._id} value={c._id}>{c.name}</option>
+            ))
+        })()
+      }
+    </select>
+
+    <div className='flex flex-wrap gap-3'>
+      {
+        data.subCategory.map((c, index) => (
+          <div key={c._id + index + "productsection"} className='text-sm flex items-center gap-1 bg-blue-50 mt-2 p-1 rounded'>
+            <p>{c.name}</p>
+            <div
+              className='hover:text-red-500 cursor-pointer'
+              onClick={() => handleRemoveSubCategory(index)}
+            >
+              <IoClose size={20} />
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+
+      
+
 
                 <div className='grid gap-1'>
                   <label htmlFor='unit' className='font-medium'>Unit</label>
@@ -435,3 +502,5 @@ const UploadProduct = () => {
 }
 
 export default UploadProduct
+
+

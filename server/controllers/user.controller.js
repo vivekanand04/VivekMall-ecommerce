@@ -1,7 +1,7 @@
-import sendEmail from "../config/sendEmail.js";
+// import sendEmail from "../config/sendEmail.js";
 import UserModel from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
-import verifyEmailTemplate from "../utils/verifyEmailTemplate.js";
+// import verifyEmailTemplate from "../utils/verifyEmailTemplate.js";
 import generatedAccessToken from "../utils/generatedAccessToken.js";
 import genertedRefreshToken from "../utils/generatedRefreshToken.js";
 import uploadImageClodinary from "../utils/uploadImageClodinary.js";
@@ -11,6 +11,7 @@ import jwt from "jsonwebtoken";
 
 export async function registerUserController(request, response) {
   try {
+    console.log("the request bosy is",request.body)
     const { name, email, password } = request.body;
 
     if (!name || !email || !password) {
@@ -45,14 +46,14 @@ export async function registerUserController(request, response) {
 
     const VerifyEmailUrl = `${process.env.FRONTEND_URL}/verify-email?code=${save?._id}`;
 
-    const verifyEmail = await sendEmail({
-      sendTo: email,
-      subject: "Verify email from binkeyit",
-      html: verifyEmailTemplate({
-        name,
-        url: VerifyEmailUrl,
-      }),
-    });
+    // const verifyEmail = await sendEmail({
+    //   sendTo: email,
+    //   subject: "Verify email from binkeyit",
+    //   html: verifyEmailTemplate({
+    //     name,
+    //     url: VerifyEmailUrl,
+    //   }),
+    // });
 
     return response.json({
       message: "User register successfully",
