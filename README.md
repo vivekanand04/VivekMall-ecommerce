@@ -1,8 +1,8 @@
-# **Binkeyit - Your Virtual Mall**
+# **VivekMall - Your Virtual Mall**
 
 ### **Tech Stack:** React, Node.js, MongoDB, Express.js
 
-**August 2024**
+**September 2025**
 
 ---
 
@@ -10,7 +10,7 @@
 
 **Binkeyit** is a full-featured e-commerce website developed to create a seamless and secure shopping experience. The platform provides users with the ability to browse products, manage a shopping cart, and complete transactions, while offering enhanced security features like user authentication, OTP-based password recovery, and admin role management.
 
-Live Demo: https://youtu.be/9BADNfFO6ic?si=cT_blpwM7KES-30j
+
 
 ---
 
