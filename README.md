@@ -8,7 +8,7 @@
 
 ### **Project Overview:**
 
-**Binkeyit** is a full-featured e-commerce website developed to create a seamless and secure shopping experience. The platform provides users with the ability to browse products, manage a shopping cart, and complete transactions, while offering enhanced security features like user authentication, OTP-based password recovery, and admin role management.
+**VivekMall** is a full-featured e-commerce website developed to create a seamless and secure shopping experience. The platform provides users with the ability to browse products, manage a shopping cart, and complete transactions, while offering enhanced security features like user authentication, OTP-based password recovery, and admin role management.
 
 
 
@@ -41,4 +41,4 @@
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/your-username/Binkeyit.git
+   git clone (https://github.com/vivekanand04/VivekMall-ecommerce/tree/main)
