@@ -1,11 +1,98 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 // import banner3 from '../assets/banner6.jpeg'
 import bannerMobile from '../assets/banner-mobile.jpg'
 import { useSelector } from 'react-redux'
 import { valideURLConvert } from '../utils/valideURLConvert'
 import {Link, useNavigate} from 'react-router-dom'
 import CategoryWiseProductDisplay from '../components/CategoryWiseProductDisplay'
-const banner3="https://res.cloudinary.com/dkqvwdfyp/image/upload/v1757274198/ecommercee/ykxzoqxqjoy0ixcsm36a.jpg";
+import { useState } from 'react'
+
+// import BannerCarousel from './BannerCarousel'
+// const banner3="https://res.cloudinary.com/dkqvwdfyp/image/upload/v1757274198/ecommercee/ykxzoqxqjoy0ixcsm36a.jpg";
+const banners = [
+  "https://res.cloudinary.com/dkqvwdfyp/image/upload/v1757316801/ecommercee/nr4xjdgc772ggthznku8.jpg",
+  "https://res.cloudinary.com/dkqvwdfyp/image/upload/v1757274198/ecommercee/ykxzoqxqjoy0ixcsm36a.jpg",
+
+  // "https://res.cloudinary.com/dkqvwdfyp/image/upload/v1757309205/ecommercee/zof0gbyfnktdievz6pvp.jpg",
+  "https://res.cloudinary.com/dkqvwdfyp/image/upload/v1757316447/ecommercee/g1nhtxsugjg5t9dpauyi.jpg"
+]
+// export const BannerCarousel = () => {
+//   const carouselRef = useRef(null)
+//   const [isHover, setIsHover] = useState(false)
+
+//   // Auto-scroll
+//   useEffect(() => {
+//     const container = carouselRef.current
+//     if (!container) return
+
+//     let rafId
+//     const speed = 0.5
+
+//     const step = () => {
+//       if (!isHover) {
+//         container.scrollLeft += speed
+//         // seamless loop
+//         if (container.scrollLeft >= container.scrollWidth / 2) {
+//           container.scrollLeft -= container.scrollWidth / 2
+//         }
+//       }
+//       rafId = requestAnimationFrame(step)
+//     }
+
+//     rafId = requestAnimationFrame(step)
+//     return () => cancelAnimationFrame(rafId)
+//   }, [isHover])
+
+//   const scrollLeft = () => {
+//     if (carouselRef.current) {
+//       carouselRef.current.scrollLeft -= 300
+//     }
+//   }
+
+//   const scrollRight = () => {
+//     if (carouselRef.current) {
+//       carouselRef.current.scrollLeft += 300
+//     }
+//   }
+
+//   return (
+//     <div className="relative w-full overflow-hidden rounded-2xl mt-5">
+//       <div
+//         ref={carouselRef}
+//         className="flex gap-2 w-max"
+//         onMouseEnter={() => setIsHover(true)}
+//         onMouseLeave={() => setIsHover(false)}
+//       >
+//         {[...banners, ...banners].map((banner, index) => (
+//           <img
+//             key={index}
+//             src={banner}
+//             alt={`banner-${index}`}
+//             className="h-[200px] w-screen object-cover flex-shrink-0"
+//           />
+//         ))}
+//       </div>
+
+//       <button
+//         onClick={scrollLeft}
+//         className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition"
+//       >
+//         &#8592;
+//       </button>
+
+//       <button
+//         onClick={scrollRight}
+//         className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition"
+//       >
+//         &#8594;
+//       </button>
+//     </div>
+//   )
+// }
+
+
+
+
 const Home = () => {
   const loadingCategory = useSelector(state => state.product.loadingCategory)
   const categoryData = useSelector(state => state.product.allCategory)
@@ -30,19 +117,65 @@ const Home = () => {
 
   return (
    <section className='bg-white'>
+  
       <div className='container mx-auto'>
-          <div className={`w-full h-full min-h-48 rounded mt-5 ${!banner3 && "animate-pulse my-2" } `}>
-              <img
+          <div className={`w-full h-full min-h-48 rounded mt-5 ${!banners && "animate-pulse my-2" } `}>
+              {/* <img
                 src={banner3}
                 className=' w-[96%] h-[200px] hidden lg:block rounded-2xl mx-auto '
                 alt='banner' 
-              />
+              /> */}
+    
               <img
                 src={bannerMobile}  
                 className='w-full h-full lg:hidden'
                 alt='banner' 
               />
-          </div>
+<div className='relative w-full overflow-hidden my-5'>
+  {/* Desktop & Tablet */}
+  <div className='hidden lg:block'>
+    <div className='flex w-[300%] animate-scroll gap-2'>
+      {banners.concat(banners).map((banner, index) => (
+        <img
+          key={index}
+          src={banner}
+          className=' w-[96%] h-[200px] hidden lg:block rounded-md mx-auto'
+          alt={`banner-${index}`}
+        />
+      ))}
+    </div>
+  </div>
+
+  {/* Mobile */}
+  {/* <div className='lg:hidden'>
+    <div className='flex w-[200%] animate-scroll gap-2'>
+      {banners.concat(banners).map((banner, index) => (
+        <img
+          key={index}
+          src={banner}
+          className='w-full h-[200px] object-cover rounded-2xl'
+          alt={`banner-mobile-${index}`}
+        />
+      ))}
+    </div>
+  </div> */}
+
+  <style>
+    {`
+      @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .animate-scroll {
+        display: flex;
+        animation: scroll 20s linear infinite;
+      }
+    `}
+  </style>
+</div>
+
+
+          </div> 
       </div>
       
       <div className='container mx-auto px-4 my-2 grid grid-cols-5 md:grid-cols-8 lg:grid-cols-10  gap-2'>
