@@ -34,6 +34,7 @@ export const createProductController = async(request,response)=>{
             discount,
             description,
             more_details,
+             user: request.userId 
         })
         const saveProduct = await product.save()
 
@@ -66,11 +67,15 @@ export const getProductController = async(request,response)=>{
             limit = 10
         }
 
-        const query = search ? {
-            $text : {
-                $search : search
-            }
-        } : {}
+        // const query = search ? {
+        //     $text : {
+        //         $search : search
+        //     }
+        // } : {}
+        const query = search
+  ? { $text: { $search: search }, user: request.userId }
+  : { user: request.userId }  // 👈 only fetch products created by logged-in user
+
 
         const skip = (page - 1) * limit
 
