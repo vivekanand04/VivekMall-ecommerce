@@ -131,7 +131,7 @@ const Home = () => {
                 className='w-full h-full lg:hidden'
                 alt='banner' 
               />
-<div className='relative w-full overflow-hidden my-5'>
+<div className='relative w-[94%] overflow-hidden my-5 mx-auto rounded-sm'>
   {/* Desktop & Tablet */}
   <div className='hidden lg:block'>
     <div className='flex w-[300%] animate-scroll gap-2'>
@@ -139,7 +139,7 @@ const Home = () => {
         <img
           key={index}
           src={banner}
-          className=' w-[96%] h-[200px] hidden lg:block rounded-md mx-auto'
+          className=' w-[90%] h-[200px] hidden lg:block rounded-md mx-auto'
           alt={`banner-${index}`}
         />
       ))}
