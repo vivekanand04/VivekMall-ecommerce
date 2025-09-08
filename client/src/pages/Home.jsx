@@ -131,7 +131,7 @@ const Home = () => {
                 className='w-full h-full lg:hidden'
                 alt='banner' 
               />
-<div className='relative w-[94%] overflow-hidden my-5 mx-auto rounded-sm'>
+<div className='relative w-[96%] overflow-hidden my-5 mx-auto rounded-sm'>
   {/* Desktop & Tablet */}
   <div className='hidden lg:block'>
     <div className='flex w-[300%] animate-scroll gap-2'>
