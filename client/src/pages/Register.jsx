@@ -49,7 +49,7 @@ const Register = () => {
             //     data : data
             // })
              const response = await Axios({
-    url: "https://vivekmall-ecommerce-backend.onrender.com/user/register",
+    url: "https://vivekmall-ecommerce-backend.onrender.com/api/user/register",
     method: "post",
     data: data
   })
