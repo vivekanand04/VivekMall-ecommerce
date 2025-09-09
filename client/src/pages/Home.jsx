@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import bannerMobile from '../assets/banner-mobile.jpg'
 import { useSelector } from 'react-redux'
 import { valideURLConvert } from '../utils/valideURLConvert'
-import {Link, useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import CategoryWiseProductDisplay from '../components/CategoryWiseProductDisplay'
 import { useState } from 'react'
 
@@ -99,55 +99,57 @@ const Home = () => {
   const subCategoryData = useSelector(state => state.product.allSubCategory)
   const navigate = useNavigate()
 
-  const handleRedirectProductListpage = (id,cat)=>{
-      console.log(id,cat)
-      const subcategory = subCategoryData.find(sub =>{
-        const filterData = sub.category.some(c => {
-          return c._id == id
-        })
-
-        return filterData ? true : null
+  const handleRedirectProductListpage = (id, cat) => {
+    console.log(id, cat)
+    const subcategory = subCategoryData.find(sub => {
+      const filterData = sub.category.some(c => {
+        return c._id == id
       })
-      const url = `/${valideURLConvert(cat)}-${id}/${valideURLConvert(subcategory.name)}-${subcategory._id}`
 
-      navigate(url)
-      console.log(url)
+      return filterData ? true : null
+    })
+    const url = `/${valideURLConvert(cat)}-${id}/${valideURLConvert(subcategory.name)}-${subcategory._id}`
+
+    navigate(url)
+    console.log(url)
   }
 
 
   return (
-   <section className='bg-white'>
-  
+    <section className='bg-white'>
+
       <div className='container mx-auto'>
-          <div className={`w-full h-full min-h-48 rounded mt-5 ${!banners && "animate-pulse my-2" } `}>
-              {/* <img
+        <div className={`w-full h-full min-h-48 rounded mt-5 ${!banners && "animate-pulse my-2"} `}>
+          {/* <img
                 src={banner3}
                 className=' w-[96%] h-[200px] hidden lg:block rounded-2xl mx-auto '
                 alt='banner' 
               /> */}
-    
-              <img
-                src={bannerMobile}  
-                className='w-full h-full lg:hidden'
-                alt='banner' 
-              />
-<div className='relative w-[96%] overflow-hidden my-5 mx-auto rounded-sm'>
-  {/* Desktop & Tablet */}
-  <div className='hidden lg:block'>
-    <div className='flex w-[300%] animate-scroll gap-2'>
-      {banners.concat(banners).map((banner, index) => (
-        <img
-          key={index}
-          src={banner}
-          className=' w-[90%] h-[200px] hidden lg:block rounded-md mx-auto'
-          alt={`banner-${index}`}
-        />
-      ))}
-    </div>
-  </div>
 
-  {/* Mobile */}
-  {/* <div className='lg:hidden'>
+          <img
+            src={bannerMobile}
+            className='w-full h-full lg:hidden transform transition duration-300 ease-in-out 
+             hover:scale-105 hover:bg-gray-50'
+            alt='banner'
+          />
+          <div className='relative w-[96%] overflow-hidden my-5 mx-auto rounded-sm'>
+            {/* Desktop & Tablet */}
+            <div className='hidden lg:block'>
+              <div className='flex w-[300%] animate-scroll gap-2'>
+                {banners.concat(banners).map((banner, index) => (
+                  <img
+                    key={index}
+                    src={banner}
+                    className=' w-[90%] h-[200px] hidden lg:block mx-0 rounded-md  hover:mx-2.5 transform transition duration-300 ease-in-out 
+             hover:scale-105 hover:bg-gray-50 hover:rounded-md'
+                    alt={`banner-${index}`}
+                  />
+                ))}``
+              </div>
+            </div>
+
+            {/* Mobile */}
+            {/* <div className='lg:hidden'>
     <div className='flex w-[200%] animate-scroll gap-2'>
       {banners.concat(banners).map((banner, index) => (
         <img
@@ -160,8 +162,8 @@ const Home = () => {
     </div>
   </div> */}
 
-  <style>
-    {`
+            <style>
+              {`
       @keyframes scroll {
         0% { transform: translateX(0); }
         100% { transform: translateX(-50%); }
@@ -171,49 +173,50 @@ const Home = () => {
         animation: scroll 20s linear infinite;
       }
     `}
-  </style>
-</div>
+            </style>
+          </div>
 
 
-          </div> 
+        </div>
       </div>
-      
-      <div className='container mx-auto px-4 my-2 grid grid-cols-5 md:grid-cols-8 lg:grid-cols-10  gap-2'>
-          {
-            loadingCategory ? (
-              new Array(12).fill(null).map((c,index)=>{
-                return(
-                  <div key={index+"loadingcategory"} className='bg-white rounded p-4 min-h-36 grid gap-2 shadow animate-pulse'>
-                    <div className='bg-blue-100 min-h-24 rounded'></div>
-                    <div className='bg-blue-100 h-8 rounded'></div>
+
+      <div className='container mx-auto px-4 my-2 grid grid-cols-5 md:grid-cols-8 lg:grid-cols-10  gap-2 cursor-pointer '>
+        {
+          loadingCategory ? (
+            new Array(12).fill(null).map((c, index) => {
+              return (
+                <div key={index + "loadingcategory"} className='bg-white rounded p-4 min-h-36 grid gap-2 shadow animate-pulse'>
+                  <div className='bg-blue-100 min-h-24 rounded'></div>
+                  <div className='bg-blue-100 h-8 rounded'></div>
+                </div>
+              )
+            })
+          ) : (
+            categoryData.map((cat, index) => {
+              return (
+                <div key={cat._id + "displayCategory"} className='w-full h-full' onClick={() => handleRedirectProductListpage(cat._id, cat.name)}>
+                  <div>
+                    <img
+                      src={cat.image}
+                      className='w-full h-full object-scale-down transform transition duration-300 ease-in-out 
+             hover:scale-105 hover:bg-gray-50'
+                    />
                   </div>
-                )
-              })
-            ) : (
-              categoryData.map((cat,index)=>{
-                return(
-                  <div key={cat._id+"displayCategory"} className='w-full h-full' onClick={()=>handleRedirectProductListpage(cat._id,cat.name)}>
-                    <div>
-                        <img 
-                          src={cat.image}
-                          className='w-full h-full object-scale-down'
-                        />
-                    </div>
-                  </div>
-                )
-              })
-              
-            )
-          }
+                </div>
+              )
+            })
+
+          )
+        }
       </div>
 
       {/***display category product */}
       {
-        categoryData?.map((c,index)=>{
-          return(
-            <CategoryWiseProductDisplay 
-              key={c?._id+"CategorywiseProduct"} 
-              id={c?._id} 
+        categoryData?.map((c, index) => {
+          return (
+            <CategoryWiseProductDisplay
+              key={c?._id + "CategorywiseProduct"}
+              id={c?._id}
               name={c?.name}
             />
           )
@@ -222,7 +225,7 @@ const Home = () => {
 
 
 
-   </section>
+    </section>
   )
 }
 
