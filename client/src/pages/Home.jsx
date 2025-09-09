@@ -132,18 +132,26 @@ const Home = () => {
              hover:scale-105 hover:bg-gray-50'
             alt='banner'
           />
-          <div className='relative w-[96%] overflow-hidden my-5 mx-auto rounded-sm'>
+          <div className='relative w-[96%] overflow-hidden my-5 mx-auto rounded-sm '>
             {/* Desktop & Tablet */}
-            <div className='hidden lg:block'>
-              <div className='flex w-[300%] animate-scroll gap-2'>
+            <div className='hidden lg:block '>
+              <div className='flex w-[200%] animate-scroll gap-2 animate-scroll gap-2 hover:[animation-play-state:paused]'>
                 {banners.concat(banners).map((banner, index) => (
-                  <img
-                    key={index}
-                    src={banner}
-                    className=' w-[90%] h-[200px] hidden lg:block mx-0 rounded-md  hover:mx-2.5 transform transition duration-300 ease-in-out 
-             hover:scale-105 hover:bg-gray-50 hover:rounded-md'
-                    alt={`banner-${index}`}
-                  />
+            //       <img
+            //         key={index}
+            //         src={banner}
+            //         className=' w-full h-[200px] object-coverhidden lg:block mx-0 rounded-md  hover:mx-2.5 transform transition duration-300 ease-in-out 
+            //  hover:scale-105 hover:bg-gray-50 hover:rounded-md'
+            //         alt={`banner-${index}`}
+            //       />
+            <div key={index} className="flex-shrink-0 w-1/3"> 
+          <img
+            src={banner}
+            className="w-full h-[200px] object-cover hover:mx-4 rounded-md transform transition duration-300 ease-in-out 
+                       hover:scale-105 hover:rounded-md"
+            alt={`banner-${index}`}
+          />
+        </div>
                 ))}``
               </div>
             </div>
@@ -170,7 +178,7 @@ const Home = () => {
       }
       .animate-scroll {
         display: flex;
-        animation: scroll 20s linear infinite;
+        animation: scroll 8s linear infinite;
       }
     `}
             </style>
