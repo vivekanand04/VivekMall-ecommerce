@@ -11,7 +11,7 @@ import jwt from "jsonwebtoken";
 
 export async function registerUserController(request, response) {
   try {
-    console.log("the request bosy is",request.body)
+    console.log("the request body is",request.body)
     const { name, email, password } = request.body;
 
     if (!name || !email || !password) {
